@@ -1,0 +1,1776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neu Products | Premium Software Solutions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@800&display=swap" rel="stylesheet">
+    <style>
+        /* styles.css - Main Stylesheet for NexusTech Website */
+
+        /* Base Styles */
+        :root {
+            --primary: #00ff88;
+            --primary-dark: #00cc70;
+            --secondary: #00ccff;
+            --black: #000000;
+            --dark-bg: #001a10;
+            --dark-gray: #111;
+            --medium-gray: #333;
+            --light-gray: #aaa;
+            --white: #fff;
+            --error: #ff5555;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            font-size: 16px;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--black);
+            color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.875rem;
+            border-radius: 30px;
+            font-weight: 600;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            font-size: 1rem;
+            min-width: 120px;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: var(--black);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 255, 136, 0.3);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-outline:hover {
+            background-color: rgba(0, 255, 136, 0.1);
+            transform: translateY(-3px);
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.25rem 5%;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-bottom: 1px solid var(--primary);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            padding: 0.9375rem 5%;
+            background-color: rgba(0, 0, 0, 0.95);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--primary);
+            letter-spacing: 1px;
+            z-index: 1001;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.875rem;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            font-weight: 500;
+            position: relative;
+            padding: 0.3125rem 0;
+            font-size: 1rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            bottom: 0;
+            left: 0;
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover:after,
+        .nav-links a.active:after {
+            width: 100%;
+        }
+
+        .auth-buttons {
+            display: flex;
+            align-items: center;
+            gap: 0.9375rem;
+        }
+
+        .login-btn, .profile-btn {
+            padding: 0.5rem 1.25rem;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+
+        .login-btn {
+            background-color: var(--primary);
+            color: var(--black);
+            border: none;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 255, 136, 0.3);
+        }
+
+        .profile-btn {
+            background-color: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .profile-btn:hover {
+            background-color: rgba(0, 255, 136, 0.1);
+        }
+
+        .profile-btn i {
+            font-size: 1.125rem;
+        }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        /* Profile Dropdown */
+        .profile-dropdown {
+            display: none;
+            position: absolute;
+            top: 4.375rem;
+            right: 5%;
+            background-color: var(--black);
+            border: 1px solid var(--primary);
+            border-radius: 10px;
+            padding: 1.25rem;
+            width: 15.625rem;
+            z-index: 100;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .profile-dropdown.show {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .profile-info {
+            margin-bottom: 0.9375rem;
+        }
+
+        .profile-info p {
+            margin: 0.3125rem 0;
+            color: var(--light-gray);
+            font-size: 0.9rem;
+        }
+
+        .profile-info p span {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .logout-btn {
+            display: inline-block;
+            padding: 0.5rem 0.9375rem;
+            background-color: transparent;
+            color: var(--error);
+            border: 1px solid var(--error);
+            border-radius: 5px;
+            font-weight: 600;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .logout-btn:hover {
+            background-color: rgba(255, 85, 85, 0.1);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 50vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem 5%;
+            background: linear-gradient(135deg, var(--black) 0%, var(--dark-bg) 100%);
+            position: relative;
+            overflow: hidden;
+            margin-top: 5rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 4rem);
+            margin: 0;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.1;
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            max-width: 43.75rem;
+            margin: 1.25rem 0 1.875rem;
+            color: var(--light-gray);
+        }
+
+        .cta-button {
+            font-size: 1rem;
+            padding: 0.75rem 1.875rem;
+        }
+
+        /* Page Header (for other pages) */
+        .page-header {
+            min-height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem 5%;
+            background: linear-gradient(135deg, var(--black) 0%, var(--dark-bg) 100%);
+            position: relative;
+            overflow: hidden;
+            margin-top: 5rem;
+        }
+
+        .page-header h1 {
+            font-size: clamp(1.75rem, 4vw, 3.5rem);
+            margin: 0;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .page-header p {
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
+            max-width: 43.75rem;
+            margin: 1.25rem 0 1.875rem;
+            color: var(--light-gray);
+        }
+
+        /* About Section */
+        .about {
+            padding: 6.25rem 5%;
+            background-color: var(--black);
+            text-align: center;
+        }
+
+        .about h2 {
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            margin-bottom: 1.875rem;
+            color: var(--primary);
+        }
+
+        .about p {
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
+            max-width: 50rem;
+            margin: 0 auto;
+            color: var(--light-gray);
+            line-height: 1.8;
+        }
+
+        /* Products Section */
+        .products {
+            padding: 6.25rem 5%;
+            background: linear-gradient(135deg, #001a10 0%, #000000 100%);
+        }
+        
+        .search-container {
+            max-width: 50rem;
+            margin: 0 auto 3.125rem;
+            position: relative;
+        }
+        
+        .search-bar {
+            display: flex;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            overflow: hidden;
+            border: 1px solid #00ff88;
+            transition: all 0.3s;
+        }
+        
+        .search-bar:focus-within {
+            box-shadow: 0 0 0 2px #00ff88;
+        }
+        
+        .search-input {
+            flex-grow: 1;
+            padding: 0.9375rem 1.5625rem;
+            background: transparent;
+            border: none;
+            color: #fff;
+            font-size: 1rem;
+        }
+        
+        .search-input:focus {
+            outline: none;
+        }
+        
+        .category-select {
+            padding: 0 1.25rem;
+            background-color: rgba(0, 255, 136, 0.2);
+            border: none;
+            color: #00ff88;
+            font-weight: 600;
+            border-left: 1px solid #00ff88;
+            cursor: pointer;
+        }
+        
+        .search-button {
+            padding: 0 1.5625rem;
+            background-color: #00ff88;
+            color: #000;
+            border: none;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .category-filters {
+            display: flex;
+            justify-content: center;
+            gap: 0.9375rem;
+            margin-bottom: 1.875rem;
+            flex-wrap: wrap;
+        }
+        
+        .category-filter {
+            padding: 0.5rem 1.25rem;
+            background-color: rgba(0, 255, 136, 0.1);
+            color: #00ff88;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 1px solid transparent;
+            font-size: 0.9rem;
+            white-space: nowrap;
+        }
+        
+        .category-filter:hover {
+            background-color: rgba(0, 255, 136, 0.2);
+        }
+        
+        .category-filter.active {
+            background-color: #00ff88;
+            color: #000;
+            font-weight: 600;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(18.75rem, 1fr));
+            gap: 1.875rem;
+            margin-top: 1.875rem;
+        }
+        
+        .product-card {
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid #00ff88;
+            transition: all 0.3s;
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        .product-card.hidden {
+            display: none;
+            opacity: 0;
+            transform: scale(0.9);
+        }
+        
+        .product-card:hover {
+            transform: translateY(-0.625rem) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0, 255, 136, 0.2);
+        }
+        
+        .product-image {
+            height: 12.5rem;
+            background-color: #001a10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #00ff88;
+            font-size: 3rem;
+        }
+        
+        .product-info {
+            padding: 1.25rem;
+        }
+        
+        .product-title {
+            font-size: 1.5rem;
+            margin: 0 0 0.625rem;
+            color: #00ff88;
+        }
+        
+        .product-desc {
+            color: #aaa;
+            margin-bottom: 1.25rem;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        
+        .product-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 1.25rem;
+        }
+        
+        .shop-now {
+            display: inline-block;
+            padding: 0.625rem 1.5625rem;
+            background-color: #00ff88;
+            color: #000;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+        
+        .shop-now:hover {
+            background-color: #00cc70;
+        }
+        
+        .no-results {
+            text-align: center;
+            grid-column: 1 / -1;
+            padding: 3.125rem;
+            color: #aaa;
+            font-size: 1.2rem;
+            display: none;
+        }
+        
+        .no-results.show {
+            display: block;
+        }
+
+        /* Contact Page */
+        .contact {
+            padding: 6.25rem 5%;
+            background-color: var(--black);
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(18.75rem, 1fr));
+            gap: 3.125rem;
+            margin-top: 3.125rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.875rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.9375rem;
+        }
+
+        .contact-icon {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-top: 0.3125rem;
+        }
+
+        .contact-text h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.3125rem;
+            color: var(--white);
+        }
+
+        .contact-text p, .contact-text a {
+            color: var(--light-gray);
+            font-size: 0.95rem;
+        }
+
+        .contact-text a:hover {
+            color: var(--primary);
+        }
+
+        .contact-form {
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 1.875rem;
+            border-radius: 15px;
+            border: 1px solid var(--primary);
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--white);
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem 0.9375rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--medium-gray);
+            border-radius: 8px;
+            color: var(--white);
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(0, 255, 136, 0.2);
+        }
+
+        .form-group textarea {
+            min-height: 9.375rem;
+            resize: vertical;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-content {
+            background-color: var(--black);
+            padding: 1.875rem;
+            border-radius: 15px;
+            border: 2px solid var(--primary);
+            max-width: 25rem;
+            width: 90%;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transform: translateY(1.25rem);
+            animation: slideUp 0.3s ease forwards;
+        }
+
+        .modal h2 {
+            margin-top: 0;
+            color: var(--primary);
+            margin-bottom: 1.25rem;
+            font-size: 1.5rem;
+        }
+
+        .modal-buttons {
+            display: flex;
+            justify-content: flex-end;
+            gap: 0.9375rem;
+            margin-top: 1.25rem;
+        }
+
+        .modal-btn {
+            padding: 0.625rem 1.25rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .close-btn {
+            background-color: transparent;
+            color: var(--error);
+            border: 1px solid var(--error);
+        }
+
+        .close-btn:hover {
+            background-color: rgba(255, 85, 85, 0.1);
+        }
+
+        .submit-btn {
+            background-color: var(--primary);
+            color: var(--black);
+            border: none;
+        }
+
+        .submit-btn:hover {
+            background-color: var(--primary-dark);
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--dark-bg);
+            padding: 3.75rem 0 1.875rem;
+            color: var(--light-gray);
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(12.5rem, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .footer-logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 1.25rem;
+            display: inline-block;
+        }
+
+        .footer-about p {
+            margin-bottom: 1.25rem;
+            font-size: 0.9rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 0.9375rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary);
+            color: var(--black);
+            transform: translateY(-3px);
+        }
+
+        .footer-links h3 {
+            color: var(--white);
+            margin-bottom: 1.25rem;
+            font-size: 1.1rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.625rem;
+        }
+
+        .footer-links a {
+            color: var(--light-gray);
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+            padding-left: 0.3125rem;
+        }
+
+        .footer-newsletter p {
+            margin-bottom: 1.25rem;
+            font-size: 0.9rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+        }
+
+        .newsletter-form input {
+            flex-grow: 1;
+            padding: 0.75rem 0.9375rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--medium-gray);
+            border-radius: 5px 0 0 5px;
+            color: var(--white);
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.9rem;
+        }
+
+        .newsletter-form input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .newsletter-form button {
+            padding: 0 1.25rem;
+            background-color: var(--primary);
+            color: var(--black);
+            border: none;
+            border-radius: 0 5px 5px 0;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .newsletter-form button:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 1.875rem;
+            border-top: 1px solid var(--medium-gray);
+            font-size: 0.8rem;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { 
+                opacity: 0;
+                transform: translateY(1.25rem);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            50% {
+                transform: translate(1.25rem, 1.25rem) rotate(5deg);
+            }
+            100% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+        }
+
+        /* Floating Shapes */
+        .floating-shapes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .shape {
+            position: absolute;
+            opacity: 0.1;
+            border-radius: 50%;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            animation: float 15s ease-in-out infinite alternate;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            html {
+                font-size: 15px;
+            }
+            
+            .nav-links {
+                gap: 1.25rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            html {
+                font-size: 14px;
+            }
+            
+            .navbar {
+                padding: 1rem 5%;
+                flex-direction: row;
+                align-items: center;
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                background-color: rgba(0, 0, 0, 0.95);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 2rem;
+                transform: translateY(-100%);
+                transition: transform 0.3s ease;
+                z-index: 1000;
+            }
+            
+            .nav-links.active {
+                transform: translateY(0);
+            }
+            
+            .auth-buttons {
+                position: fixed;
+                bottom: 2rem;
+                left: 0;
+                width: 100%;
+                justify-content: center;
+                display: none;
+                z-index: 1001;
+            }
+            
+            .auth-buttons.active {
+                display: flex;
+            }
+            
+            .hero {
+                margin-top: 5rem;
+                padding-top: 3rem;
+                padding-bottom: 3rem;
+                min-height: auto;
+            }
+            
+            .profile-dropdown {
+                top: 5rem;
+                right: 5%;
+                width: 90%;
+            }
+            
+            .search-bar {
+                flex-direction: column;
+                border-radius: 15px;
+            }
+            
+            .search-input {
+                border-radius: 15px 15px 0 0 !important;
+            }
+            
+            .category-select {
+                border-radius: 0 !important;
+                border-left: none !important;
+                border-top: 1px solid var(--primary);
+                border-bottom: 1px solid var(--primary);
+                padding: 0.9375rem 1.5625rem;
+            }
+            
+            .search-button {
+                border-radius: 0 0 15px 15px !important;
+                padding: 0.9375rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            html {
+                font-size: 13px;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .social-links {
+                justify-content: center;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .newsletter-form input {
+                border-radius: 5px 5px 0 0 !important;
+            }
+            
+            .newsletter-form button {
+                border-radius: 0 0 5px 5px !important;
+                padding: 0.75rem;
+            }
+        }
+        .search-container {
+    max-width: 800px;
+    margin: 0 auto 50px;
+    position: relative;
+}
+
+.search-bar {
+    display: flex;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+    overflow: hidden;
+    border: 1px solid #00ff88;
+    transition: all 0.3s;
+}
+
+.search-bar:focus-within {
+    box-shadow: 0 0 0 2px #00ff88;
+}
+
+.search-input {
+    flex-grow: 1;
+    padding: 15px 25px;
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 1rem;
+}
+
+.search-input:focus {
+    outline: none;
+}
+
+.search-button {
+    padding: 0 25px;
+    background-color: #00ff88;
+    color: #000;
+    border: none;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .search-container {
+        width: 100%;
+        padding: 0 15px;
+    }
+    
+    .search-bar {
+        flex-direction: row; /* Ensure horizontal layout */
+    }
+    
+    .search-input {
+        padding: 12px 20px;
+    }
+    
+    .search-button {
+        padding: 0 20px;
+    }
+}
+
+@media (max-width: 576px) {
+    .search-input {
+        padding: 12px 15px;
+        font-size: 0.9rem;
+    }
+    
+    .search-button {
+        padding: 0 15px;
+        min-width: 40px;
+    }
+    
+    .search-button i {
+        font-size: 0.9rem;
+    }
+}
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">Neu Products</div>
+        <button class="menu-toggle" id="menuToggle">
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="nav-links" id="navLinks">
+            <a href="#home">Home</a>
+            <a href="#products">Products</a>
+            <a href="#about">About</a>
+            <!-- <a href="#contact">Contact</a> -->
+        </div>
+        <div class="auth-buttons" id="authButtons">
+            <button class="login-btn" id="loginBtn">Login</button>
+            <button class="profile-btn" id="profileBtn" style="display: none;">
+                <i class="fas fa-user"></i>
+                <span id="profileName">Profile</span>
+            </button>
+        </div>
+        
+        <!-- Profile Dropdown -->
+        <div class="profile-dropdown" id="profileDropdown">
+            <div class="profile-info">
+                <p><span>Name:</span> <span id="dropdownName">-</span></p>
+                <p><span>Email:</span> <span id="dropdownEmail">-</span></p>
+                <p><span>Phone:</span> <span id="dropdownPhone">-</span></p>
+            </div>
+            <a href="#" class="logout-btn" id="logoutBtn">Logout</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="floating-shapes">
+            <div class="shape" style="width: 100px; height: 100px; top: 20%; left: 10%;"></div>
+            <div class="shape" style="width: 150px; height: 150px; bottom: 15%; right: 15%;"></div>
+            <div class="shape" style="width: 70px; height: 70px; top: 50%; left: 30%;"></div>
+            <div class="shape" style="width: 120px; height: 120px; top: 30%; right: 25%;"></div>
+        </div>
+        <h1>Original. Premium. Unmatched.</h1>
+        <p>Genuine software. Zero cracks. Total protection from third-party threats.</p>
+        <!-- <a href="#" class="btn btn-primary" id="exploreBtn">Contact</a> -->
+    </section>
+
+
+
+
+    <!-- Products Section -->
+    <section class="products" id="products">
+        <div class="search-container">
+            <div class="search-bar">
+                <input type="text" class="search-input" id="searchInput" placeholder="Search for products...">
+                <button class="search-button">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+        
+        <div class="category-filters" id="categoryFilters">
+            <div class="category-filter active" data-category="all">All Products</div>
+            <div class="category-filter" data-category="productivity">Productivity</div>
+            <div class="category-filter" data-category="design">Design</div>
+            <div class="category-filter" data-category="development">Development</div>
+            <!-- <div class="category-filter" data-category="security">Security</div> -->
+        </div>
+        
+        <div class="products-grid" id="productsGrid">
+            <!-- Products will be dynamically inserted here -->
+        </div>
+        
+        <div class="no-results" id="noResults">
+            <i class="fas fa-search" style="font-size: 2rem; margin-bottom: 15px;"></i>
+            <h3>No products found</h3>
+            <p>Try adjusting your search or filter criteria</p>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <h2>About Neu Products</h2>
+        <p>We are a team of passionate developers and designers committed to creating software that not only meets but exceeds expectations. Our products are built with cutting-edge technology, user-centered design, and a touch of creative genius to deliver exceptional digital experiences.</p>
+    </section>
+
+
+    <!-- Contact Section -->
+    <!-- <section class="contact" id="contact">
+        <h2>Contact Us</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="contact-text">
+                        <h3>Address</h3>
+                        <p>123 Tech Street, Silicon Valley, CA 94025</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <div class="contact-text">
+                        <h3>Phone</h3>
+                        <p>+1 (555) 123-4567</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="contact-text">
+                        <h3>Email</h3>
+                        <a href="mailto:info@nexustech.com">info@nexustech.com</a>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-form">
+                <form>
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <h2>Login</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" required>
+                </div>
+                <div class="modal-buttons">
+                    <button type="button" class="modal-btn close-btn" id="closeLogin">Close</button>
+                    <button type="submit" class="modal-btn submit-btn">Login</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-about">
+                    <div class="footer-logo">Neu Products</div>
+                    <p>Innovative software solutions for the digital age. We build tools that empower businesses and individuals to achieve more.</p>
+                    <div class="social-links">
+                        <a href="https://neuraq.in/"><i class="fab fa-google"></i></a>
+                        <a href="https://wa.me/918157980307"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://www.instagram.com/neuraq.in/"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com/company/104394086/admin/dashboard/"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <!-- <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#products">Products</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div> -->
+                <!-- <div class="footer-links">
+                    <h3>Products</h3>
+                    <ul>
+                        <li><a href="#">Analytics Pro</a></li>
+                        <li><a href="#">Design Suite</a></li>
+                        <li><a href="#">SecureVault</a></li>
+                        <li><a href="#">DevTools X</a></li>
+                    </ul>
+                </div> -->
+                <!-- <div class="footer-newsletter">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to our newsletter for the latest updates and offers.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your email address">
+                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                    </form> -->
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Neu Products. All Rights Reserved. | <a href="terms.html">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+
+   <script>
+    // Product Data (updated with image)
+ const products = [
+    {
+        id: 9,
+        title: "Canva Lifetime",
+        description: "Lifetime access to Canva Pro tools.",
+        price: 149,
+        originalPrice: 99,
+        category: "design",
+        image: "img-1.jpg"
+    },
+    {
+        id: 10,
+        title: "Filmora 13 for Windows",
+        description: "Lifetime license of Filmora 13 for Windows.",
+        price: 399,
+        originalPrice: 299,
+        category: "productivity",
+        image: "img-2.jpg"
+    },
+    {
+        id: 11,
+        title: "Filmora 14 for Android",
+        description: "Lifetime license of Filmora 14 for Android mobile.",
+        price: 389,
+        originalPrice: 299,
+        category: "productivity",
+        image: "img-3.jpg"
+    },
+    {
+        id: 12,
+        title: "Kinemaster for Android",
+        description: "Lifetime access to Kinemaster Pro for Android.",
+        price: 389,
+        originalPrice: 299,
+        category: "productivity",
+        image: "img-4.jpg"
+    },
+    {
+        id: 13,
+        title: "Spotify for Mobile",
+        description: "Lifetime access to Spotify Premium for mobile.",
+        price: 389.,
+        originalPrice: 299,
+        category: "productivity",
+        image: "img-5.jpg"
+    },
+    {
+        id: 14,
+        title: "Photoshop for PC",
+        description: "Lifetime access to Photoshop for Windows PC.",
+        price: 399,
+        originalPrice: 299,
+        category: "design",
+        image: "img-6.jpg"
+    },
+    {
+        id: 15,
+        title: "Capcut Pro for Android",
+        description: "Lifetime access to Capcut Pro on Android mobile.",
+        price: 359,
+        originalPrice: 299,
+        category: "design",
+        image: "img-7.jpg"
+    },
+    {
+        id: 16,
+        title: "Capcut Pro for Windows",
+        description: "Lifetime access to Capcut Pro on Windows.",
+        price: 369,
+        originalPrice: 299,
+        category: "design",
+        image: "img-8.jpg"
+    },
+    {
+        id: 17,
+        title: "ChatGPT 4 Plus",
+        description: "1 Month ₹499 | 3 Months ₹799 access to ChatGPT 4 Plus.",
+        price: 499,
+        originalPrice: 399,
+        category: "productivity",
+        image: "img-9.jpg"
+    },
+    {
+        id: 18,
+        title: "Envato Elements",
+        description: "1 Month ₹299 | 1 Year ₹1999 Envato subscription.",
+        price: 399,
+        originalPrice: 299,
+        category: "design",
+        image: "img-10.jpg"
+    },
+    {
+        id: 19,
+        title: "Notion Pro",
+        description: "Notion Pro lifetime access for personal use.",
+        price: 259.,
+        originalPrice: 199,
+        category: "productivity",
+        image: "img-11.jpg"
+    },
+    {
+        id: 20,
+        title: "Microsoft Office 365",
+        description: "Lifetime Office 365 account with full features.",
+        price: 699,
+        originalPrice: 599,
+        category: "productivity",
+        image: "img-12.jpg"
+    },
+    {
+        id: 21,
+        title: "Grammarly Premium",
+        description: "1 year Grammarly Premium subscription.",
+        price: 449,
+        originalPrice: 349,
+        category: "productivity",
+        image: "img-13.jpg"
+    },
+    {
+        id: 22,
+        title: "Figma Pro",
+        description: "Lifetime Figma Pro access for designers.",
+        price: 549,
+        originalPrice: 450,
+        category: "design",
+        image: "img-14.jpg"
+    },
+    {
+        id: 23,
+        title: "Final Cut Pro for Mac",
+        description: "Professional video editing software for Mac.",
+        price: 749,
+        originalPrice: 649,
+        category: "design",
+        image: "img-15.jpg"
+    },
+    {
+        id: 24,
+        title: "Lightroom Mobile",
+        description: "Lifetime Lightroom Mobile Pro features.",
+        price: 199,
+        originalPrice: 99,
+        category: "design",
+        image: "img-16.jpg"
+    },
+    {
+        id: 25,
+        title: "After Effects CC",
+        description: "Lifetime access to Adobe After Effects.",
+        price: 749,
+        originalPrice: 749,
+        category: "design",
+        image: "img-17.jpg"
+    },
+    {
+        id: 26,
+        title: "Zoom Pro",
+        description: "1 year of Zoom Pro with 100 participant limit.",
+        price: 629,
+        originalPrice: 599,
+        category: "productivity",
+        image: "img-18.jpg"
+    },
+    {
+        id: 27,
+        title: "InVideo Pro",
+        description: "Lifetime access to InVideo premium features.",
+        price: 599,
+        originalPrice: 499,
+        category: "design",
+        image: "img-19.jpg"
+    },
+    {
+        id: 28,
+        title: "Wondershare UniConverter",
+        description: "All-in-one video converter and compressor.",
+        price: 349,
+        originalPrice: 299,
+        category: "productivity",
+        image: "img-20.jpg"
+    },
+    {
+        id: 29,
+        title: "Adobe All Apps Bundle",
+        description: "Complete Adobe Creative Cloud suite for Windows.",
+        price: 599,
+        originalPrice: 599,
+        category: "design",
+        image: "img-21.jpg"
+    },
+    {
+        id: 30,
+        title: "LinkedIn Business Premium",
+        description: "6 months access to LinkedIn Business Premium.",
+        price:5499,
+        originalPrice: 4999,
+        category: "productivity",
+        image: "img-22.jpg"
+    },
+    {
+        id: 31,
+        title: "AI Tools Bundle (100+ Tools)",
+        description: "Premium access to 100+ AI tools for 1 month.",
+        price: 699,
+        originalPrice: 599,
+        category: "productivity",
+        image: "img-23.jpg"
+    },
+    {
+        id: 32,
+        title: "Coursera Plus",
+        description: "1 Month ₹349 | 1 Year ₹2599 Coursera subscription.",
+        price: 349,
+        originalPrice: 299,
+        category: "productivity",
+        image: "img-24.jpg"
+    },
+    {
+        id: 33,
+        title: "Indian Business Database",
+        description: "130+ Crore Indian business contacts database.",
+        price: 549,
+        originalPrice: 349,
+        category: "productivity",
+        image: "img-25.jpg"
+    },
+    {
+        id: 34,
+        title: "Udemy Business",
+        description: "1 Month ₹399 | 1 Year ₹1699 Udemy subscription.",
+        price: 399,
+        originalPrice: 299,
+        category: "productivity",
+        image: "img-26.jpg"
+    }
+];
+
+
+    // DOM Elements
+    const productsGrid = document.getElementById('productsGrid');
+    const searchInput = document.getElementById('searchInput');
+    const categoryFilters = document.getElementById('categoryFilters');
+    const noResults = document.getElementById('noResults');
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    const authButtons = document.getElementById('authButtons');
+
+    let currentCategory = 'all';
+    let currentSearchTerm = '';
+
+    // Render products
+    function renderProducts() {
+        productsGrid.innerHTML = '';
+        const filteredProducts = products.filter(product => {
+            const categoryMatch = currentCategory === 'all' || product.category === currentCategory;
+            const searchMatch = product.title.toLowerCase().includes(currentSearchTerm) ||
+                                product.description.toLowerCase().includes(currentSearchTerm);
+            return categoryMatch && searchMatch;
+        });
+
+        if (filteredProducts.length === 0) {
+            noResults.classList.add('show');
+        } else {
+            noResults.classList.remove('show');
+            filteredProducts.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                productCard.innerHTML = `
+                    <div class="product-image">
+                        <img src="/assets/images/${product.image}" alt="${product.title}" />
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">${product.title}</h3>
+                        <p class="product-desc">${product.description}</p>
+                        <div class="product-price">${product.price.toFixed(2)}  INR</div>
+                        <a href="#" class="shop-now" data-product="${product.title}" data-price="${product.price}">Shop Now</a>
+                    </div>
+                `;
+                productsGrid.appendChild(productCard);
+            });
+        }
+
+        document.querySelectorAll('.shop-now').forEach(button => {
+            button.addEventListener('click', handleShopNow);
+        });
+    }
+
+    function handleCategoryFilter(e) {
+        const filter = e.target.closest('.category-filter');
+        if (!filter) return;
+        document.querySelectorAll('.category-filter').forEach(f => f.classList.remove('active'));
+        filter.classList.add('active');
+        currentCategory = filter.dataset.category;
+        renderProducts();
+    }
+
+    function handleSearch() {
+        currentSearchTerm = searchInput.value.toLowerCase().trim();
+        renderProducts();
+    }
+
+    function handleShopNow(e) {
+        e.preventDefault();
+        const user = JSON.parse(localStorage.getItem('user'));
+        const product = e.target.getAttribute('data-product');
+        const price = e.target.getAttribute('data-price');
+
+        if (!user) {
+            alert('Please login first to purchase products.');
+            document.getElementById('loginModal').style.display = 'flex';
+            return;
+        }
+
+        const message = `New Purchase Inquiry:%0A%0A*Product:* ${product}%0A*Price:* $${price}%0A%0A*Customer Details:*%0AName: ${user.name}%0AEmail: ${user.email}%0APhone: ${user.phone}`;
+        window.open(`https://wa.me/8157980307?text=${message}`, '_blank');
+    }
+
+    function toggleMenu() {
+        navLinks.classList.toggle('active');
+        authButtons.classList.toggle('active');
+        menuToggle.innerHTML = navLinks.classList.contains('active') ?
+            '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+    }
+
+    function closeMenu() {
+        navLinks.classList.remove('active');
+        authButtons.classList.remove('active');
+        menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+    }
+
+    // Event listeners
+    categoryFilters.addEventListener('click', handleCategoryFilter);
+    searchInput.addEventListener('input', handleSearch);
+    menuToggle.addEventListener('click', toggleMenu);
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', closeMenu);
+    });
+
+    // Initial render
+    renderProducts();
+</script>
+
+
+    <script>
+        // DOM Elements
+        const loginBtn = document.getElementById('loginBtn');
+        const profileBtn = document.getElementById('profileBtn');
+        const profileDropdown = document.getElementById('profileDropdown');
+        const loginModal = document.getElementById('loginModal');
+        const closeLogin = document.getElementById('closeLogin');
+        const loginForm = document.getElementById('loginForm');
+        const profileName = document.getElementById('profileName');
+        const dropdownName = document.getElementById('dropdownName');
+        const dropdownEmail = document.getElementById('dropdownEmail');
+        const dropdownPhone = document.getElementById('dropdownPhone');
+        const logoutBtn = document.getElementById('logoutBtn');
+
+        // Check if user is logged in from localStorage
+        const user = JSON.parse(localStorage.getItem('user'));
+        if (user) {
+            loginBtn.style.display = 'none';
+            profileBtn.style.display = 'flex';
+            profileName.textContent = user.name.split(' ')[0]; // Show first name only
+            dropdownName.textContent = user.name;
+            dropdownEmail.textContent = user.email;
+            dropdownPhone.textContent = user.phone;
+        }
+
+        // Toggle profile dropdown
+        profileBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            profileDropdown.classList.toggle('show');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', () => {
+            profileDropdown.classList.remove('show');
+        });
+
+        // Show login modal
+        loginBtn.addEventListener('click', () => {
+            loginModal.style.display = 'flex';
+        });
+
+        // Close login modal
+        closeLogin.addEventListener('click', () => {
+            loginModal.style.display = 'none';
+        });
+
+        // Close modal when clicking outside
+        loginModal.addEventListener('click', (e) => {
+            if (e.target === loginModal) {
+                loginModal.style.display = 'none';
+            }
+        });
+
+        // Handle login form submission
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const user = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value
+            };
+            
+            // Save to localStorage
+            localStorage.setItem('user', JSON.stringify(user));
+            
+            // Update UI
+            loginBtn.style.display = 'none';
+            profileBtn.style.display = 'flex';
+            profileName.textContent = user.name.split(' ')[0];
+            dropdownName.textContent = user.name;
+            dropdownEmail.textContent = user.email;
+            dropdownPhone.textContent = user.phone;
+            
+            // Close modal
+            loginModal.style.display = 'none';
+            
+            // Reset form
+            loginForm.reset();
+        });
+
+        // Handle logout
+        logoutBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            localStorage.removeItem('user');
+            profileBtn.style.display = 'none';
+            loginBtn.style.display = 'block';
+            profileDropdown.classList.remove('show');
+        });
+
+        // Floating shapes animation
+        const shapesContainer = document.querySelector('.floating-shapes');
+        const shapesCount = 8;
+        
+        for (let i = 0; i < shapesCount; i++) {
+            const shape = document.createElement('div');
+            shape.classList.add('shape');
+            
+            const size = Math.random() * 100 + 50;
+            const posX = Math.random() * 100;
+            const posY = Math.random() * 100;
+            const delay = Math.random() * 5;
+            const duration = Math.random() * 2 + 3;
+            
+            shape.style.width = `${size}px`;
+            shape.style.height = `${size}px`;
+            shape.style.top = `${posY}%`;
+            shape.style.left = `${posX}%`;
+            shape.style.animation = `float ${duration}s ease-in-out ${delay}s infinite alternate`;
+            
+            shapesContainer.appendChild(shape);
+        }
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    const navbarHeight = document.querySelector('.navbar').offsetHeight;
+                    const targetPosition = targetElement.offsetTop - navbarHeight;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
